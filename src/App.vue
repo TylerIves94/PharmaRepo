@@ -5,12 +5,12 @@
     class="min-h-screen bg-slate-800 text-slate-900 font-sans flex flex-col items-center"
   >
     <!-- Header: mx-auto + w-full for centering -->
-    <header class="w-full bg-blue-300 border border-black p-2">
-      <h1 class="text-xl text-center font-bold">
+    <header class="w-full bg-blue-100 border border-black p-1">
+      <h1 class="text-md text-center font-bold">
         Bespoke Pharmacist-led medication reviews
       </h1>
-      <div class="w-full border border-black mt-2 p-2 bg-black">
-        <p class="text-center text-xl font-semibold text-slate-200">
+      <div class="w-full border border-black p-1 bg-black">
+        <p class="text-center text-md font-semibold text-slate-200">
           Licensed in Wisconsin
         </p>
       </div>
@@ -50,7 +50,7 @@
 
         <!-- Description: High contrast slate color -->
         <p
-          class="mt-6 text-lg md:text-xl text-slate-600 font-medium leading-relaxed"
+          class="mt-6 text-lg md:text-xl text-black font-medium leading-relaxed"
         >
           Get personalized advice and recommendations directly from
           professionals.
@@ -75,83 +75,258 @@
     <div
       ref="targetElement"
       :class="[
-        'w-full transition-all duration-2000 transform',
+        'w-full transition-all duration-3000 transform flex flex-col items-center',
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
       ]"
     >
-      <main class="w-full max-w-2xl p-4 flex flex-col gap-2 bg-slate-900">
-        <!-- Top Card (Red) -->
+      <!-- Main "Chat" Container -->
+      <main
+        class="w-full p-4 flex flex-col gap-6 bg-gradient-to-tr from-slate-950 via-indigo-950 to-slate-900 rounded-b-3xl shadow-2xl relative border-b border-white/10 overflow-hidden"
+      >
+        <!-- Geometric Pattern Overlay -->
         <div
-          class="w-[95%] self-start bg-red-200 rounded-xl border border-black p-4"
-        >
-          <p class="text-left font-semibold mb-2">What do we offer?</p>
-          <p class="text-blue-700 text-right font-semibold">
-            A simple way to get answers for all your medication related
-            concerns!
-          </p>
+          class="absolute inset-0 pointer-events-none opacity-[0.05]"
+          style="
+            background-color: #e5e5f7;
+            background-image:
+              repeating-linear-gradient(
+                45deg,
+                #81829d 25%,
+                transparent 25%,
+                transparent 75%,
+                #81829d 75%,
+                #81829d
+              ),
+              repeating-linear-gradient(
+                45deg,
+                #81829d 25%,
+                #e5e5f7 25%,
+                #e5e5f7 75%,
+                #81829d 75%,
+                #81829d
+              );
+            background-position:
+              0 0,
+              4px 4px;
+            background-size: 8px 8px;
+          "
+        ></div>
+        <p class="text-center text-white font-semibold text-xl">
+          Got questions? We've got answers!
+        </p>
+        <!-- Message 1 (Left/Pharmacist) -->
+        <div class="w-[85%] self-start flex flex-col gap-1">
+          <div
+            class="bg-white rounded-2xl rounded-tl-none p-5 shadow-lg border-l-4 border-blue-500"
+          >
+            <p class="text-slate-900 font-bold text-lg mb-2">
+              What do we offer?
+            </p>
+            <p class="text-slate-600 leading-relaxed">
+              A simple way to get answers for all your medication related
+              concerns!
+            </p>
+          </div>
         </div>
 
-        <!-- Bottom Card (Blue) -->
-        <div
-          class="w-[95%] self-end bg-blue-200 rounded-xl border border-black p-4"
-        >
-          <p class="text-left font-semibold mb-2">
-            What kind of questions can you answer?
-          </p>
-          <p class="text-blue-800 text-right font-semibold">
-            We are focused on answering every concern you may have, providing a
-            bespoke personalized medication and life-style review to help inform
-            future decisions.
-          </p>
+        <!-- Message 2 (Right/User perspective) -->
+        <div class="w-[85%] self-end flex flex-col gap-1 relative">
+          <div
+            class="bg-blue-600 rounded-2xl rounded-tr-none p-5 shadow-xl text-white border-r-4 border-white"
+          >
+            <p class="font-bold text-lg mb-2">
+              What kind of questions can you answer?
+            </p>
+            <p class="text-blue-50 leading-relaxed">
+              We are focused on answering every concern you may have, providing
+              a bespoke personalized medication and life-style review.
+            </p>
+          </div>
+
+          <!-- FADE OVERLAY: Only shows when NOT expanded -->
+          <div
+            v-if="!isExpanded"
+            class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none"
+          ></div>
         </div>
+
+        <!-- COLLAPSIBLE SECTION -->
         <div
-          class="w-[95%] self-start bg-red-200 rounded-xl border border-black p-4"
+          class="flex flex-col gap-4 overflow-hidden transition-all duration-700 ease-in-out"
+          :style="{
+            maxHeight: isExpanded ? '1000px' : '0px',
+            opacity: isExpanded ? '1' : '0',
+          }"
         >
-          <p class="text-left font-semibold mb-2">
-            What is the benefit, I already see a doctor?
-          </p>
-          <p class="text-blue-800 text-right font-semibold">
-            We do not work to KPI Targets to line the pockets of a rich CEO, so
-            we are able to take as much time as needed to fully review every
-            element of the health report that you submit.
-          </p>
+          <!-- Message 3 (Left) -->
+          <div class="w-[85%] self-start flex flex-col gap-1">
+            <div
+              class="bg-white rounded-2xl rounded-tl-none p-5 shadow-lg border-l-4 border-blue-500"
+            >
+              <p class="text-slate-900 font-bold text-lg mb-2 text-left">
+                What is the benefit? I already see a doctor.
+              </p>
+              <p class="text-slate-600 text-left leading-relaxed">
+                We do not work to KPI Targets to line the pockets of a rich CEO.
+                We take as much time as needed to fully review every element of
+                your health report.
+              </p>
+            </div>
+          </div>
+
+          <!-- Message 4 (Right) -->
+          <div class="w-[85%] self-end flex flex-col gap-1">
+            <div
+              class="bg-blue-600 rounded-2xl rounded-tr-none p-5 shadow-xl text-white border-r-4 border-white"
+            >
+              <p class="font-bold text-lg mb-2 text-right">
+                What kind of questions can you answer?
+              </p>
+              <p class="text-blue-50 text-right leading-relaxed">
+                We are focused on answering every concern you may have,
+                providing a bespoke personalized medication and life-style
+                review.
+              </p>
+            </div>
+          </div>
         </div>
-        <div
-          class="w-[95%] self-end bg-blue-200 rounded-xl border border-black p-4"
-        >
-          <p class="text-left font-semibold mb-2">
-            What kind of questions can you answer?
-          </p>
-          <p class="text-blue-800 text-right font-semibold">
-            We are focused on answering every concern you may have, providing a
-            bespoke personalized medication and life-style review to help inform
-            future decisions.
-          </p>
+
+        <!-- VIEW MORE BUTTON -->
+        <div class="flex justify-center mt-4">
+          <button
+            @click="isExpanded = !isExpanded"
+            class="group flex items-center gap-2 px-6 py-2 bg-slate-800 hover:bg-slate-700 text-blue-400 font-bold rounded-full border border-slate-700 transition-all shadow-md"
+          >
+            <span>{{ isExpanded ? "Show less" : "View more questions" }}</span>
+            <svg
+              :class="{ 'rotate-180': isExpanded }"
+              class="w-4 h-4 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="3"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
         </div>
       </main>
     </div>
+    <!-- Section Wrapper -->
+    <div class="w-full bg-slate-50 py-8 px-4 flex flex-col items-center">
+      <!-- Section Title -->
+      <div class="max-w-2xl w-full mb-12">
+        <h2
+          class="text-center text-2xl md:text-3xl font-extrabold text-slate-900 leading-tight"
+        >
+          Getting the knowledge you want <br />
+          <span class="text-blue-600">has never been easier</span>
+        </h2>
+        <div class="h-1 w-20 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+      </div>
 
-    <div class="bg-red-200 w-full">
-      <p class="text-center text-lg font-semibold outline-1">
-        What is this service?
-      </p>
-    </div>
-    <div>
-      <p class="text-md p-2 bg-slate-200 m-2 rounded-lg">
-        Regular doctors and pharmacists do all they can in the hope of helping
-        you, the client, but they are all limited by their involvement with Big
-        Pharma, putting profit and efficiency above all else.
-        <span class="font-semibold text-blue-800"
-          >This leads to treating people like numbers on a conveyer belt.
-        </span>
-      </p>
-      <p class="text-md p-2 bg-slate-200 m-2 rounded-lg">
-        This service offers extensive one-on-one consultations to analyzes all
-        the medications (Prescribed, Over-the-counter-vitamins and supplements)
-        to check for interactions, reduce waste, ensuring dosages line up,
-        managing possible or ongoing side effects and creating a personalized
-        medication action plan!
-      </p>
+      <!-- Steps Container -->
+      <div class="max-w-2xl w-full space-y-12 relative">
+        <!-- Vertical Line (The timeline connector) -->
+        <div
+          class="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200 z-0"
+        ></div>
+
+        <!-- Step One -->
+        <div class="relative z-10 flex gap-6 group">
+          <div
+            class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-blue-600 flex items-center justify-center font-bold text-blue-600 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors"
+          >
+            1
+          </div>
+          <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex-1"
+          >
+            <h3
+              class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
+            >
+              The Problem
+            </h3>
+            <p class="text-slate-700 leading-relaxed">
+              Regular doctors and pharmacists do all they can to help, but they
+              are often limited by corporate targets, putting efficiency above
+              all else.
+              <span class="block mt-2 font-semibold text-blue-700 italic">
+                "This often leads to people being treated like numbers on a
+                conveyor belt."
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Step Two -->
+        <div class="relative z-10 flex gap-6 group">
+          <div
+            class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-blue-600 flex items-center justify-center font-bold text-blue-600 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors"
+          >
+            2
+          </div>
+          <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex-1"
+          >
+            <h3
+              class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
+            >
+              The Consultation
+            </h3>
+            <p class="text-slate-700 leading-relaxed">
+              We offer extensive
+              <span class="font-bold text-slate-900"
+                >one-on-one consultations</span
+              >
+              to analyze all your medications—including prescriptions, vitamins,
+              and supplements. We check for interactions and ensure your dosages
+              line up perfectly.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step Three -->
+        <div class="relative z-10 flex gap-6 group">
+          <div
+            class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-blue-600 flex items-center justify-center font-bold text-blue-600 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors"
+          >
+            3
+          </div>
+          <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex-1"
+          >
+            <h3
+              class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
+            >
+              The Action Plan
+            </h3>
+            <p class="text-slate-700 leading-relaxed">
+              We focus on reducing waste, managing side effects, and creating a
+              <span class="text-indigo-600 font-bold"
+                >Personalized Medication Action Plan</span
+              >
+              designed specifically for your lifestyle and health goals.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom CTA/Success Message -->
+      <div class="mt-4 max-w-xl w-full">
+        <div
+          class="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 rounded-3xl shadow-xl text-center transform hover:scale-[1.02] transition-transform"
+        >
+          <p class="text-white text-2xl font-bold">
+            And just like that,
+            <span class="text-blue-100">peace of mind.</span>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -163,6 +338,7 @@ import { ref, onMounted, onUnmounted } from "vue";
 
 const targetElement = ref(null);
 const isVisible = ref(false);
+const isExpanded = ref(false);
 
 // Logic for the observer
 let observer = null;

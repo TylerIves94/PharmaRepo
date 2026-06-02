@@ -1,10 +1,11 @@
 <template>
-  <!-- min-h-screen covers the whole page, flex-col keeps items stacked -->
-
+  <!-- To DO LIST: 
+   URGENT BEFORE FURTHER PROGRESS !!! - Adjust front-end to utilize components and asset control to improve Repo readabilty and Preformance speed
+   
+   -->
   <div
     class="min-h-screen bg-slate-800 text-slate-900 font-sans flex flex-col items-center"
   >
-    <!-- Header: mx-auto + w-full for centering -->
     <header class="w-full bg-blue-100 border border-black p-1">
       <h1 class="text-md text-center font-bold">
         Bespoke Pharmacist-led medication reviews
@@ -19,28 +20,22 @@
     <div
       class="relative w-full min-h-[800px] flex items-center justify-center overflow-hidden font-sans p-4"
     >
-      <!-- 1. Background Layer: Full opacity but we will use an overlay -->
       <div
         class="absolute inset-0 bg-cover bg-center bg-no-repeat"
         :style="{ backgroundImage: `url(${heroImageUrl})` }"
       ></div>
 
-      <!-- 2. Dark Overlay: This helps the white "card" pop -->
       <div class="absolute inset-0 bg-black/30"></div>
 
-      <!-- 3. The Content Card: Glassmorphism effect -->
-      <!-- bg-white/80 adds transparency, backdrop-blur makes the background image non-distracting -->
       <div
         class="relative z-10 max-w-2xl w-full bg-white/60 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-2xl text-center border border-black"
       >
-        <!-- Tagline -->
         <span
           class="inline-block py-1.5 px-4 mb-6 text-xs font-bold tracking-widest text-blue-700 uppercase bg-blue-50 rounded-full border border-blue-100"
         >
           Personalized Care
         </span>
 
-        <!-- Main Headline: Balanced contrast -->
         <h1
           class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1]"
         >
@@ -48,7 +43,6 @@
           <span class="text-blue-600">medication reviews</span>
         </h1>
 
-        <!-- Description: High contrast slate color -->
         <p
           class="mt-6 text-lg md:text-xl text-black font-medium leading-relaxed"
         >
@@ -56,12 +50,10 @@
           professionals.
         </p>
 
-        <!-- WebMD line: Subtle but distinct -->
         <p class="mt-4 text-md text-red-600 font-semibold">
           Stop stressing over WebMD searches
         </p>
 
-        <!-- Button: Solid color for maximum visibility -->
         <div class="mt-10">
           <button
             class="w-full md:w-auto px-12 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-xl transition-all shadow-lg hover:shadow-blue-200"
@@ -71,7 +63,7 @@
         </div>
       </div>
     </div>
-    <!-- Main Content Container -->
+
     <div
       ref="targetElement"
       :class="[
@@ -79,11 +71,9 @@
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
       ]"
     >
-      <!-- Main "Chat" Container -->
       <main
         class="w-full p-4 flex flex-col gap-6 bg-gradient-to-tr from-slate-950 via-indigo-950 to-slate-900 rounded-b-3xl shadow-2xl relative border-b border-white/10 overflow-hidden"
       >
-        <!-- Geometric Pattern Overlay -->
         <div
           class="absolute inset-0 pointer-events-none opacity-[0.05]"
           style="
@@ -114,7 +104,7 @@
         <p class="text-center text-white font-semibold text-xl">
           Got questions? We've got answers!
         </p>
-        <!-- Message 1 (Left/Pharmacist) -->
+
         <div class="w-[85%] self-start flex flex-col gap-1">
           <div
             class="bg-white rounded-2xl rounded-tl-none p-5 shadow-lg border-l-4 border-blue-500"
@@ -129,7 +119,6 @@
           </div>
         </div>
 
-        <!-- Message 2 (Right/User perspective) -->
         <div class="w-[85%] self-end flex flex-col gap-1 relative">
           <div
             class="bg-blue-600 rounded-2xl rounded-tr-none p-5 shadow-xl text-white border-r-4 border-white"
@@ -143,14 +132,12 @@
             </p>
           </div>
 
-          <!-- FADE OVERLAY: Only shows when NOT expanded -->
           <div
             v-if="!isExpanded"
             class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none"
           ></div>
         </div>
 
-        <!-- COLLAPSIBLE SECTION -->
         <div
           class="flex flex-col gap-4 overflow-hidden transition-all duration-700 ease-in-out"
           :style="{
@@ -158,7 +145,6 @@
             opacity: isExpanded ? '1' : '0',
           }"
         >
-          <!-- Message 3 (Left) -->
           <div class="w-[85%] self-start flex flex-col gap-1">
             <div
               class="bg-white rounded-2xl rounded-tl-none p-5 shadow-lg border-l-4 border-blue-500"
@@ -174,7 +160,6 @@
             </div>
           </div>
 
-          <!-- Message 4 (Right) -->
           <div class="w-[85%] self-end flex flex-col gap-1">
             <div
               class="bg-blue-600 rounded-2xl rounded-tr-none p-5 shadow-xl text-white border-r-4 border-white"
@@ -191,7 +176,6 @@
           </div>
         </div>
 
-        <!-- VIEW MORE BUTTON -->
         <div class="flex justify-center mt-4">
           <button
             @click="isExpanded = !isExpanded"
@@ -216,9 +200,7 @@
         </div>
       </main>
     </div>
-    <!-- Section Wrapper -->
     <div class="w-full bg-slate-50 py-8 px-4 flex flex-col items-center">
-      <!-- Section Title -->
       <div class="max-w-2xl w-full mb-12">
         <h2
           class="text-center text-2xl md:text-3xl font-extrabold text-slate-900 leading-tight"
@@ -229,14 +211,11 @@
         <div class="h-1 w-20 bg-blue-600 mx-auto mt-4 rounded-full"></div>
       </div>
 
-      <!-- Steps Container -->
       <div class="max-w-2xl w-full space-y-6 md:space-y-12 relative">
-        <!-- Vertical Line (The timeline connector) -->
         <div
           class="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200 z-0"
         ></div>
 
-        <!-- Step One -->
         <div class="relative z-10 flex gap-6 group">
           <div
             class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-blue-600 flex items-center justify-center font-bold text-blue-600 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors"
@@ -263,7 +242,6 @@
           </div>
         </div>
 
-        <!-- Step Two -->
         <div class="relative z-10 flex gap-6 group">
           <div
             class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-blue-600 flex items-center justify-center font-bold text-blue-600 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors"
@@ -290,7 +268,6 @@
           </div>
         </div>
 
-        <!-- Step Three -->
         <div class="relative z-10 flex gap-6 group">
           <div
             class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-blue-600 flex items-center justify-center font-bold text-blue-600 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors"
@@ -316,7 +293,6 @@
         </div>
       </div>
 
-      <!-- Bottom CTA/Success Message -->
       <div class="mt-4 max-w-xl w-full">
         <div
           class="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 rounded-3xl shadow-xl text-center transform hover:scale-[1.02] transition-transform"
@@ -330,7 +306,6 @@
     </div>
     <div>
       <div class="min-h-screen bg-slate-300">
-        <!-- Enquiry Form Section -->
         <div
           id="enquiry-form"
           class="w-full bg-slate-800 py-8 px-2 flex flex-col items-center"
@@ -338,7 +313,6 @@
           <div
             class="max-w-3xl w-full bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/20"
           >
-            <!-- Form Header -->
             <div
               class="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-center"
             >
@@ -351,13 +325,11 @@
               </p>
             </div>
 
-            <!-- Form Body -->
             <form
               @submit.prevent="handleFormSubmit"
               class="p-8 md:p-12 space-y-6"
             >
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Name -->
                 <div class="flex flex-col gap-2">
                   <label
                     for="name"
@@ -374,7 +346,6 @@
                   />
                 </div>
 
-                <!-- Email -->
                 <div class="flex flex-col gap-2">
                   <label
                     for="email"
@@ -392,7 +363,6 @@
                 </div>
               </div>
 
-              <!-- Phone (Optional) -->
               <div class="flex flex-col gap-2">
                 <label
                   for="phone"
@@ -408,7 +378,6 @@
                 />
               </div>
 
-              <!-- Message -->
               <div class="flex flex-col gap-2">
                 <label
                   for="message"
@@ -425,7 +394,6 @@
                 ></textarea>
               </div>
 
-              <!-- Submit Button -->
               <div class="pt-4">
                 <button
                   type="submit"
@@ -447,7 +415,6 @@
                 </button>
               </div>
 
-              <!-- Privacy Note -->
               <p class="text-center text-xs text-slate-400">
                 Your information is kept confidential and is only used to
                 contact you regarding your review.
@@ -455,7 +422,6 @@
             </form>
           </div>
 
-          <!-- Footer Brand -->
           <footer class="mt-12 text-slate-500 text-sm">
             &copy; {{ new Date().getFullYear() }} Pharmacist-Led Medication
             Reviews. Licensed in Wisconsin.
@@ -467,14 +433,12 @@
 </template>
 
 <script setup>
-// 1. Import the image so Vite can process it and provide the correct URL
-// import heroImageUrl from "@/assets/backgroundHero.jpg";
+import heroImageUrl from "@/assets/backgroundHero.jpg";
 import { ref, onMounted, onUnmounted, reactive } from "vue";
 const targetElement = ref(null);
 const isVisible = ref(false);
 const isExpanded = ref(false);
 
-// Logic for the observer
 let observer = null;
 
 const form = reactive({
@@ -483,12 +447,11 @@ const form = reactive({
   phone: "",
   message: "",
 });
+
 const handleFormSubmit = () => {
-  // Replace this with your actual submission logic (e.g., API call)
   console.log("Form Submitted:", form);
   alert("Thank you! Your enquiry has been sent. We will contact you soon.");
 
-  // Reset form
   form.name = "";
   form.email = "";
   form.phone = "";
@@ -497,7 +460,7 @@ const handleFormSubmit = () => {
 
 onMounted(() => {
   const options = {
-    root: null, // use the viewport
+    root: null,
     threshold: 0.2, // trigger when 20% of the element is visible
   };
 
@@ -505,7 +468,6 @@ onMounted(() => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         isVisible.value = true;
-        // If you only want it to appear once, unobserve here
         observer.unobserve(entry.target);
       }
     });

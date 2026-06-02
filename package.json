@@ -8,7 +8,9 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build"
+    "type-check": "vue-tsc --build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
@@ -22,6 +24,7 @@
     "@vitejs/plugin-vue": "^6.0.6",
     "@vue/tsconfig": "^0.9.1",
     "autoprefixer": "^10.5.0",
+    "gh-pages": "^6.3.0",
     "npm-run-all2": "^8.0.4",
     "postcss": "^8.5.14",
     "tailwindcss": "^4.2.4",
@@ -32,5 +35,10 @@
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TylerIves94/PharmaRepo.git"
+  },
+  "homepage": "http://TylerIves94.github.io/PharmaRepo"
 }

@@ -468,7 +468,7 @@
 
 <script setup>
 // 1. Import the image so Vite can process it and provide the correct URL
-import heroImageUrl from "@/assets/backgroundHero.jpg";
+// import heroImageUrl from "@/assets/backgroundHero.jpg";
 import { ref, onMounted, onUnmounted, reactive } from "vue";
 const targetElement = ref(null);
 const isVisible = ref(false);

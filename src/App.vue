@@ -230,7 +230,7 @@
       </div>
 
       <!-- Steps Container -->
-      <div class="max-w-2xl w-full space-y-12 relative">
+      <div class="max-w-2xl w-full space-y-6 md:space-y-12 relative">
         <!-- Vertical Line (The timeline connector) -->
         <div
           class="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200 z-0"
@@ -322,9 +322,144 @@
           class="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 rounded-3xl shadow-xl text-center transform hover:scale-[1.02] transition-transform"
         >
           <p class="text-white text-2xl font-bold">
-            And just like that,
-            <span class="text-blue-100">peace of mind.</span>
+            Click here to
+            <span class="text-slate-900 text-3xl">Get Started.</span>
           </p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="min-h-screen bg-slate-300">
+        <!-- Enquiry Form Section -->
+        <div
+          id="enquiry-form"
+          class="w-full bg-slate-800 py-8 px-2 flex flex-col items-center"
+        >
+          <div
+            class="max-w-3xl w-full bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/20"
+          >
+            <!-- Form Header -->
+            <div
+              class="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-center"
+            >
+              <h2 class="text-3xl font-extrabold text-white">
+                Start Your Review
+              </h2>
+              <p class="text-blue-100 mt-2 font-medium">
+                Fill out the form below and a pharmacist will reach out to you
+                shortly.
+              </p>
+            </div>
+
+            <!-- Form Body -->
+            <form
+              @submit.prevent="handleFormSubmit"
+              class="p-8 md:p-12 space-y-6"
+            >
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Name -->
+                <div class="flex flex-col gap-2">
+                  <label
+                    for="name"
+                    class="text-sm font-bold text-slate-700 uppercase tracking-wider"
+                    >Full Name</label
+                  >
+                  <input
+                    v-model="form.name"
+                    type="text"
+                    id="name"
+                    required
+                    placeholder="John Doe"
+                    class="px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-900"
+                  />
+                </div>
+
+                <!-- Email -->
+                <div class="flex flex-col gap-2">
+                  <label
+                    for="email"
+                    class="text-sm font-bold text-slate-700 uppercase tracking-wider"
+                    >Email Address</label
+                  >
+                  <input
+                    v-model="form.email"
+                    type="email"
+                    id="email"
+                    required
+                    placeholder="john@example.com"
+                    class="px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-900"
+                  />
+                </div>
+              </div>
+
+              <!-- Phone (Optional) -->
+              <div class="flex flex-col gap-2">
+                <label
+                  for="phone"
+                  class="text-sm font-bold text-slate-700 uppercase tracking-wider"
+                  >Phone Number (Optional)</label
+                >
+                <input
+                  v-model="form.phone"
+                  type="tel"
+                  id="phone"
+                  placeholder="(555) 000-0000"
+                  class="px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-900"
+                />
+              </div>
+
+              <!-- Message -->
+              <div class="flex flex-col gap-2">
+                <label
+                  for="message"
+                  class="text-sm font-bold text-slate-700 uppercase tracking-wider"
+                  >How can we help?</label
+                >
+                <textarea
+                  v-model="form.message"
+                  id="message"
+                  rows="4"
+                  required
+                  placeholder="Tell us a bit about your current medications or concerns..."
+                  class="px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-900"
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="pt-4">
+                <button
+                  type="submit"
+                  class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-xl transition-all shadow-lg hover:shadow-blue-200 flex items-center justify-center gap-2"
+                >
+                  <span>Submit Enquiry</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Privacy Note -->
+              <p class="text-center text-xs text-slate-400">
+                Your information is kept confidential and is only used to
+                contact you regarding your review.
+              </p>
+            </form>
+          </div>
+
+          <!-- Footer Brand -->
+          <footer class="mt-12 text-slate-500 text-sm">
+            &copy; {{ new Date().getFullYear() }} Pharmacist-Led Medication
+            Reviews. Licensed in Wisconsin.
+          </footer>
         </div>
       </div>
     </div>
@@ -334,14 +469,31 @@
 <script setup>
 // 1. Import the image so Vite can process it and provide the correct URL
 import heroImageUrl from "@/assets/backgroundHero.jpg";
-import { ref, onMounted, onUnmounted } from "vue";
-
+import { ref, onMounted, onUnmounted, reactive } from "vue";
 const targetElement = ref(null);
 const isVisible = ref(false);
 const isExpanded = ref(false);
 
 // Logic for the observer
 let observer = null;
+
+const form = reactive({
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+});
+const handleFormSubmit = () => {
+  // Replace this with your actual submission logic (e.g., API call)
+  console.log("Form Submitted:", form);
+  alert("Thank you! Your enquiry has been sent. We will contact you soon.");
+
+  // Reset form
+  form.name = "";
+  form.email = "";
+  form.phone = "";
+  form.message = "";
+};
 
 onMounted(() => {
   const options = {

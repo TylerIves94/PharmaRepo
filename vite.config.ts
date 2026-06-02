@@ -6,10 +6,8 @@ import tailwindcss from "@tailwindcss/vite";
 import vue from "@vitejs/plugin-vue";
 import vueDevTools from "vite-plugin-vue-devtools";
 
-// https://vite.dev/config/
 export default defineConfig({
-  // Add this line. Replace 'pharma' with your repository name.
-  base: "/pharma/",
+  base: "/PharmaRepo/",
   plugins: [vue(), vueDevTools(), tailwindcss()],
   resolve: {
     alias: {

@@ -1,5 +1,6 @@
 <script setup>
 import { reactive } from "vue";
+import BaseInput from "./BaseInput.vue";
 
 const form = reactive({
   name: "",
@@ -18,10 +19,10 @@ const handleFormSubmit = () => {
 <template>
   <div
     id="enquiry-form"
-    class="w-full bg-slate-800 py-8 px-2 flex flex-col items-center"
+    class="w-full bg-slate-50 py-4 px-2 flex flex-col items-center"
   >
     <div
-      class="max-w-3xl w-full bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/20"
+      class="max-w-3xl w-full bg-slate-50 rounded-lg shadow-2xl overflow-hidden border border-black"
     >
       <div
         class="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-center text-white"
@@ -32,44 +33,42 @@ const handleFormSubmit = () => {
         </p>
       </div>
 
-      <form @submit.prevent="handleFormSubmit" class="p-8 md:p-12 space-y-6">
+      <form
+        @submit.prevent="handleFormSubmit"
+        class="p-8 md:p-12 space-y-6 bg-slate-50"
+      >
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="flex flex-col gap-2">
-            <label class="text-sm font-bold text-slate-700 uppercase"
-              >Full Name</label
-            >
-            <input
-              v-model="form.name"
-              type="text"
-              required
-              placeholder="John Doe"
-              class="input-style"
-            />
-          </div>
-          <div class="flex flex-col gap-2">
-            <label class="text-sm font-bold text-slate-700 uppercase"
-              >Email Address</label
-            >
-            <input
-              v-model="form.email"
-              type="email"
-              required
-              placeholder="john@example.com"
-              class="input-style"
-            />
-          </div>
-        </div>
-        <div class="flex flex-col gap-2">
-          <label class="text-sm font-bold text-slate-700 uppercase"
-            >Message</label
-          >
-          <textarea
-            v-model="form.message"
-            rows="4"
+          <BaseInput
+            label="Full Name"
+            v-model="form.name"
+            placeholder="John Doe"
             required
-            class="input-style"
-          ></textarea>
+          />
+          <BaseInput
+            label="Email Address"
+            v-model="form.email"
+            type="email"
+            placeholder="john@example.com"
+            required
+          />
         </div>
+
+        <BaseInput
+          label="Are You Reaching out for yourself or a loved one?"
+          v-model="form.toggle"
+          type="radio"
+          :options="[
+            { label: 'Myself', value: 'self' },
+            { label: 'Someone Else', value: 'someone_else' },
+          ]"
+          required
+        />
+        <BaseInput
+          label="Other Notes?"
+          v-model="form.message"
+          type="textarea"
+          required
+        />
         <button
           type="submit"
           class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all"
@@ -80,5 +79,3 @@ const handleFormSubmit = () => {
     </div>
   </div>
 </template>
-
-<style scoped></style>

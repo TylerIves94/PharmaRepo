@@ -6,8 +6,6 @@
 
     <HeroSection />
 
-    <ChatFaq />
-
     <div class="w-full bg-slate-50 py-8 px-4 flex flex-col items-center">
       <div class="max-w-2xl w-full mb-12 text-center">
         <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900">
@@ -111,7 +109,7 @@
         </a>
       </div>
     </div>
-
+    <ChatFaq />
     <EnquiryForm />
 
     <footer

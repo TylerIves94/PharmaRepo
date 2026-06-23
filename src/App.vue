@@ -98,19 +98,19 @@
       </div>
 
       <div class="mt-4 max-w-xl w-full">
-        <a
-          href="#enquiry-form"
-          class="block bg-gradient-to-r from-blue-600 to-indigo-700 p-8 rounded-3xl shadow-xl text-center transform hover:scale-[1.02] transition-transform"
+        <button
+          @click="showEnquiryModal = true"
+          class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 p-8 rounded-3xl shadow-xl text-center transform hover:scale-[1.02] transition-transform"
         >
           <p class="text-white text-2xl font-bold">
             Click here to
             <span class="text-slate-900 text-3xl">Get Started.</span>
           </p>
-        </a>
+        </button>
       </div>
     </div>
     <ChatFaq />
-    <EnquiryForm />
+    <EnquiryForm :isOpen="showEnquiryModal" @close="showEnquiryModal = false" />
 
     <footer
       class="w-full bg-slate-800 pb-12 text-center text-slate-500 text-sm"
@@ -122,8 +122,12 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import Header from "./components/Header.vue";
 import HeroSection from "./components/HeroSection.vue";
 import ChatFaq from "./components/ChatFaq.vue";
 import EnquiryForm from "./components/EnquiryForm.vue";
+
+// Control Viability of Form
+const showEnquiryModal = ref(false);
 </script>

@@ -33,11 +33,13 @@ import heroImageUrl from "@/assets/backgroundHero.jpg";
         Stop stressing over WebMD searches
       </p>
       <div class="mt-10">
-        <button
-          class="w-full md:w-auto px-12 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-xl transition-all shadow-lg hover:shadow-blue-200"
-        >
-          Learn more
-        </button>
+        <a href="#enquiry-form">
+          <button
+            class="w-full md:w-auto px-12 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl rounded-xl transition-all shadow-lg hover:shadow-blue-200"
+          >
+            Learn more
+          </button>
+        </a>
       </div>
     </div>
   </div>

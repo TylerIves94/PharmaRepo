@@ -66,7 +66,7 @@ defineProps({
   },
   options: {
     type: Array,
-    default: () => [], // Format: [{ label: 'Option 1', value: 'val1' }]
+    default: () => [],
   },
 });
 defineEmits(["update:modelValue"]);

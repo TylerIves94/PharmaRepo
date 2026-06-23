@@ -41,7 +41,6 @@ onUnmounted(() => {
         Got questions? We've got answers!
       </p>
 
-      <!-- Always Visible Section, Start -->
       <div
         class="w-[85%] self-start bg-white rounded-2xl rounded-tl-none p-5 shadow-lg border-l-4 border-blue-500"
       >
@@ -64,7 +63,6 @@ onUnmounted(() => {
           </p>
         </div>
 
-        <!-- Remaining messages hidden unless expanded -->
         <div
           v-if="!isExpanded"
           class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none"

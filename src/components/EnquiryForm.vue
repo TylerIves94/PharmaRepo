@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, computed } from "vue";
+import { reactive, ref, computed } from "vue";
 import BaseInput from "./BaseInput.vue";
 
 defineProps({
@@ -8,7 +8,9 @@ defineProps({
 
 const emit = defineEmits(["close"]);
 
-const form = reactive({
+const FORM_ENDPOINT = "https://formspree.io/f/xpqvrneq";
+
+const createFormState = () => ({
   name: "",
   email: "",
   phone: "",
@@ -18,19 +20,46 @@ const form = reactive({
   historyKnowledge: "",
 });
 
+const form = reactive(createFormState());
+
+// Honeypot for Formspree's spam filter: real users never see or fill
+// this field, but simple bots that auto-fill every input on the page
+// do. If it arrives non-empty, Formspree silently drops the submission.
+const honeypot = ref("");
+
+// idle | submitting | success | error
+// This form intentionally collects only contact/screening info, not
+// clinical details, so relaying it via Formspree to a staff inbox is
+// fine — real medical history is handled securely during the consult.
+const status = ref("idle");
+
 const subjectPronoun = computed(() =>
   form.reachOutSubject === "someone_else" ? "their" : "your",
 );
 
-const handleFormSubmit = () => {
-  console.log("Form Submitted:", form);
-  alert("Thank you! Your enquiry has been sent.");
-  Object.keys(form).forEach((key) => (form[key] = ""));
-  // Need to add functionality to send completed form details to email, and save a copy within database
-  // T.I 19/06/2026
+const handleFormSubmit = async () => {
+  status.value = "submitting";
+  try {
+    const response = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...form, _gotcha: honeypot.value }),
+    });
 
-  // Must ensure HIPAA Compliance is followed (As much as possible for a personal project currently) TI
+    if (!response.ok) throw new Error("Submission failed");
 
+    status.value = "success";
+    Object.assign(form, createFormState());
+  } catch (err) {
+    status.value = "error";
+  }
+};
+
+const handleClose = () => {
+  status.value = "idle";
   emit("close");
 };
 </script>
@@ -39,13 +68,13 @@ const handleFormSubmit = () => {
   <div
     v-if="isOpen"
     class="fixed inset-0 z-50 flex items-center justify-center p-2 bg-slate-900/60 backdrop-blur-sm"
-    @click.self="emit('close')"
+    @click.self="handleClose"
   >
     <div
       class="relative max-w-3xl w-full bg-slate-50 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 animate-in fade-in zoom-in duration-300 max-h-[90vh] flex flex-col"
     >
       <button
-        @click="emit('close')"
+        @click="handleClose"
         class="absolute top-4 right-4 text-white hover:scale-110 transition-transform z-10"
       >
         <svg
@@ -74,10 +103,59 @@ const handleFormSubmit = () => {
           </p>
         </div>
 
+        <div
+          v-if="status === 'success'"
+          class="p-8 md:p-12 text-center space-y-4"
+        >
+          <div
+            class="mx-auto w-14 h-14 rounded-full bg-teal-100 flex items-center justify-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-7 w-7 text-teal-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900">
+            Thanks — we've got it!
+          </h3>
+          <p class="text-slate-600 leading-relaxed">
+            Your enquiry has been sent to our team. We'll be in touch soon at
+            the email you provided.
+          </p>
+          <button
+            @click="handleClose"
+            class="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl transition-all"
+          >
+            Close
+          </button>
+        </div>
+
         <form
+          v-else
           @submit.prevent="handleFormSubmit"
           class="p-8 md:p-12 space-y-6 bg-slate-50"
         >
+        <!-- Honeypot: hidden from real users, catches bots that blindly fill every field -->
+        <input
+          v-model="honeypot"
+          type="text"
+          name="_gotcha"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+          class="hidden"
+        />
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <BaseInput
             label="Full Name"
@@ -119,7 +197,7 @@ const handleFormSubmit = () => {
         />
 
         <BaseInput
-          label="You will need to share honest medical details for our pharmacists to give accurate and useful advice. Is this a problem?"
+          label="Anything else we should know before reaching out? (Please don't include specific medical details here—we'll cover that securely during your consultation.)"
           v-model="form.message"
           type="textarea"
           optional
@@ -145,11 +223,16 @@ const handleFormSubmit = () => {
           </p>
         </div>
 
+          <p v-if="status === 'error'" class="text-red-600 text-sm font-medium">
+            Something went wrong sending your enquiry. Please try again.
+          </p>
+
           <button
             type="submit"
-            class="w-full py-4 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-teal-200"
+            :disabled="status === 'submitting'"
+            class="w-full py-4 bg-teal-600 hover:bg-teal-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-lg shadow-teal-200"
           >
-            Submit Enquiry
+            {{ status === "submitting" ? "Sending…" : "Submit Enquiry" }}
           </button>
         </form>
       </div>

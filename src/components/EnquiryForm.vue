@@ -22,6 +22,11 @@ const createFormState = () => ({
 
 const form = reactive(createFormState());
 
+// Honeypot for Formspree's spam filter: real users never see or fill
+// this field, but simple bots that auto-fill every input on the page
+// do. If it arrives non-empty, Formspree silently drops the submission.
+const honeypot = ref("");
+
 // idle | submitting | success | error
 // This form intentionally collects only contact/screening info, not
 // clinical details, so relaying it via Formspree to a staff inbox is
@@ -41,7 +46,7 @@ const handleFormSubmit = async () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(form),
+      body: JSON.stringify({ ...form, _gotcha: honeypot.value }),
     });
 
     if (!response.ok) throw new Error("Submission failed");
@@ -140,6 +145,17 @@ const handleClose = () => {
           @submit.prevent="handleFormSubmit"
           class="p-8 md:p-12 space-y-6 bg-slate-50"
         >
+        <!-- Honeypot: hidden from real users, catches bots that blindly fill every field -->
+        <input
+          v-model="honeypot"
+          type="text"
+          name="_gotcha"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+          class="hidden"
+        />
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <BaseInput
             label="Full Name"

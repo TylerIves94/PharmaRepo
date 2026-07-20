@@ -1,12 +1,19 @@
 <template>
-  <header class="w-full bg-blue-100 border border-black p-1">
-    <h1 class="text-md text-center font-bold">
+  <header class="w-full bg-teal-50 border border-teal-100 p-1">
+    <h1 class="text-base text-center font-bold text-slate-900">
       Bespoke Pharmacist-led medication reviews
     </h1>
-    <div class="w-full border border-black p-1 bg-black">
-      <p class="text-center text-md font-semibold text-slate-200">
+    <button
+      @click="emit('open-license')"
+      class="w-full p-1 bg-teal-700 hover:bg-teal-800 transition-colors cursor-pointer"
+    >
+      <p class="text-center text-sm font-semibold text-white underline underline-offset-2">
         Licensed in Wisconsin
       </p>
-    </div>
+    </button>
   </header>
 </template>
+
+<script setup>
+const emit = defineEmits(["open-license"]);
+</script>

@@ -13,7 +13,7 @@ import heroImageUrl from "@/assets/backgroundHero.jpg";
     <div class="absolute inset-0 bg-black/30"></div>
 
     <div
-      class="relative z-10 max-w-2xl w-full bg-white/70 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-2xl text-center border border-white/40"
+      class="relative z-10 max-w-2xl lg:max-w-3xl w-full bg-white/70 backdrop-blur-md p-8 md:p-12 lg:p-16 rounded-3xl shadow-2xl text-center border border-white/40"
     >
       <span
         class="inline-block py-1.5 px-4 mb-6 text-xs font-bold tracking-widest text-teal-700 uppercase bg-teal-50 rounded-full border border-teal-100"
@@ -21,15 +21,15 @@ import heroImageUrl from "@/assets/backgroundHero.jpg";
         Personalized Care
       </span>
       <h1
-        class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1]"
+        class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1]"
       >
         One-to-One Extensive <br />
         <span class="text-teal-600">medication reviews</span>
       </h1>
-      <p class="mt-6 text-lg md:text-xl text-slate-800 font-medium leading-relaxed">
+      <p class="mt-6 text-lg md:text-xl lg:text-2xl text-slate-800 font-medium leading-relaxed">
         Get personalized advice and recommendations directly from professionals.
       </p>
-      <p class="mt-4 mb-2 text-md text-amber-600 font-semibold">
+      <p class="mt-4 mb-2 text-md lg:text-lg text-amber-600 font-semibold">
         Stop stressing over WebMD searches
       </p>
     </div>

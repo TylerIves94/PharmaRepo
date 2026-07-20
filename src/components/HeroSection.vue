@@ -1,7 +1,5 @@
 <script setup>
 import heroImageUrl from "@/assets/backgroundHero.jpg";
-
-const emit = defineEmits(["open-enquiry"]);
 </script>
 
 <template>
@@ -31,17 +29,9 @@ const emit = defineEmits(["open-enquiry"]);
       <p class="mt-6 text-lg md:text-xl text-slate-800 font-medium leading-relaxed">
         Get personalized advice and recommendations directly from professionals.
       </p>
-      <p class="mt-4 text-md text-amber-600 font-semibold">
+      <p class="mt-4 mb-2 text-md text-amber-600 font-semibold">
         Stop stressing over WebMD searches
       </p>
-      <div class="mt-10">
-        <button
-          @click="emit('open-enquiry')"
-          class="w-full md:w-auto px-12 py-4 bg-teal-600 hover:bg-teal-700 text-white font-bold text-xl rounded-xl transition-all shadow-lg hover:shadow-teal-200"
-        >
-          Learn more
-        </button>
-      </div>
     </div>
   </div>
 </template>

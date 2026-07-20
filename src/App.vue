@@ -4,7 +4,7 @@
   >
     <Header @open-license="showLicenseModal = true" />
 
-    <HeroSection @open-enquiry="showEnquiryModal = true" />
+    <HeroSection />
 
     <div class="w-full bg-slate-50 py-8 px-4 flex flex-col items-center">
       <div class="max-w-2xl w-full mb-12 text-center">
@@ -115,22 +115,60 @@
       @close="showLicenseModal = false"
     />
 
-    <footer
-      class="w-full bg-slate-900 pb-12 text-center text-slate-500 text-sm"
-    >
-      &copy; {{ new Date().getFullYear() }} Pharmacist-Led Medication Reviews.
-      <button
-        @click="showLicenseModal = true"
-        class="underline underline-offset-2 hover:text-slate-300 transition-colors cursor-pointer"
-      >
-        Licensed in Wisconsin.
-      </button>
+    <footer class="w-full bg-slate-900 pt-12 pb-8 px-4 text-slate-400 text-sm">
+      <div class="max-w-2xl mx-auto flex flex-col items-center gap-6">
+        <div
+          class="w-full flex flex-col sm:flex-row sm:justify-center items-center gap-4 sm:gap-8 text-center"
+        >
+          <!-- Placeholder number (555-01xx is the reserved fictional range) — replace before launch -->
+          <a
+            href="tel:+16085550100"
+            class="flex items-center gap-2 hover:text-white transition-colors"
+          >
+            <Phone class="w-4 h-4 text-teal-500 flex-shrink-0" />
+            (608) 555-0100
+          </a>
+          <a
+            href="mailto:pharmaenquiry@outlook.com"
+            class="flex items-center gap-2 hover:text-white transition-colors"
+          >
+            <Mail class="w-4 h-4 text-teal-500 flex-shrink-0" />
+            pharmaenquiry@outlook.com
+          </a>
+          <span class="flex items-center gap-2">
+            <MapPin class="w-4 h-4 text-teal-500 flex-shrink-0" />
+            Anywhere in Wisconsin
+          </span>
+        </div>
+
+        <p
+          class="flex items-center gap-2 text-xs text-slate-500 text-center max-w-sm"
+        >
+          <Clock class="w-4 h-4 text-teal-500 flex-shrink-0" />
+          Available by appointment—we aim to respond to all enquiries within
+          24 hours.
+        </p>
+
+        <div class="w-full h-px bg-slate-800"></div>
+
+        <p class="text-xs text-slate-500 text-center">
+          &copy; {{ new Date().getFullYear() }} Pharmacist-Led Medication
+          Reviews.
+          <button
+            @click="showLicenseModal = true"
+            class="underline underline-offset-2 hover:text-slate-300 transition-colors cursor-pointer"
+          >
+            Licensed in Wisconsin.
+          </button>
+        </p>
+      </div>
     </footer>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { Phone, Mail, MapPin, Clock } from "lucide-vue-next";
 import Header from "./components/Header.vue";
 import HeroSection from "./components/HeroSection.vue";
 import ChatFaq from "./components/ChatFaq.vue";

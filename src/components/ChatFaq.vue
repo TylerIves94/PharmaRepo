@@ -30,19 +30,19 @@ onUnmounted(() => {
   <div
     ref="targetElement"
     :class="[
-      'w-full transition-all duration-[3000ms] transform flex flex-col items-center',
+      'w-full transition-all duration-700 ease-out transform flex flex-col items-center',
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
     ]"
   >
     <main
-      class="w-full p-4 flex flex-col gap-6 bg-gradient-to-tr from-slate-950 via-indigo-950 to-slate-900 rounded-b-3xl relative border-b border-white/10 overflow-hidden"
+      class="w-full p-4 flex flex-col gap-6 bg-gradient-to-tr from-slate-900 via-teal-950 to-slate-900 rounded-b-3xl relative border-b border-white/10 overflow-hidden"
     >
       <p class="text-center text-white font-semibold text-xl">
         Got questions? We've got answers!
       </p>
 
       <div
-        class="w-[85%] self-start bg-white rounded-2xl rounded-tl-none p-5 shadow-lg border-l-4 border-blue-500"
+        class="w-[85%] self-start bg-white rounded-2xl rounded-tl-none p-5 shadow-lg border-l-4 border-teal-500"
       >
         <p class="text-slate-900 font-bold text-lg mb-2">What do we offer?</p>
         <p class="text-slate-600 leading-relaxed">
@@ -52,12 +52,12 @@ onUnmounted(() => {
 
       <div class="w-[85%] self-end relative">
         <div
-          class="bg-blue-600 rounded-2xl rounded-tr-none p-5 shadow-xl text-white border-r-4 border-white"
+          class="bg-teal-600 rounded-2xl rounded-tr-none p-5 shadow-xl text-white border-r-4 border-white"
         >
           <p class="font-bold text-lg mb-2">
             What kind of questions can you answer?
           </p>
-          <p class="text-blue-50 leading-relaxed">
+          <p class="text-teal-50 leading-relaxed">
             We are focused on answering every concern you may have, providing a
             bespoke personalized medication review.
           </p>
@@ -65,7 +65,7 @@ onUnmounted(() => {
 
         <div
           v-if="!isExpanded"
-          class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none"
+          class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none"
         ></div>
       </div>
 
@@ -77,7 +77,7 @@ onUnmounted(() => {
         }"
       >
         <div
-          class="w-[85%] self-start bg-white rounded-2xl rounded-tl-none p-5 shadow-lg border-l-4 border-blue-500"
+          class="w-[85%] self-start bg-white rounded-2xl rounded-tl-none p-5 shadow-lg border-l-4 border-teal-500"
         >
           <p class="text-slate-900 font-bold text-lg mb-2">
             What is the benefit? I already see a doctor.
@@ -89,17 +89,17 @@ onUnmounted(() => {
         </div>
 
         <div
-          class="w-[85%] self-end bg-blue-600 rounded-2xl rounded-tr-none p-5 shadow-xl text-white border-r-4 border-white"
+          class="w-[85%] self-end bg-teal-600 rounded-2xl rounded-tr-none p-5 shadow-xl text-white border-r-4 border-white"
         >
-          <p class="font-bold text-lg mb-2">Another Question?</p>
-          <p class="text-blue-50 leading-relaxed">
-            This message was visible before because it was outside the toggle
-            box.
+          <p class="font-bold text-lg mb-2">Something else on your mind?</p>
+          <p class="text-teal-50 leading-relaxed">
+            Reach out via the enquiry form below—we're happy to answer
+            anything not covered here.
           </p>
         </div>
 
         <div
-          class="w-[85%] self-start bg-white rounded-2xl rounded-tl-none p-5 shadow-lg border-l-4 border-blue-500"
+          class="w-[85%] self-start bg-white rounded-2xl rounded-tl-none p-5 shadow-lg border-l-4 border-teal-500"
         >
           <p class="text-slate-900 font-bold text-lg mb-2">Is my data safe?</p>
           <p class="text-slate-600 leading-relaxed">
@@ -108,10 +108,10 @@ onUnmounted(() => {
         </div>
 
         <div
-          class="w-[85%] self-end bg-blue-600 rounded-2xl rounded-tr-none p-5 shadow-xl text-white border-r-4 border-white"
+          class="w-[85%] self-end bg-teal-600 rounded-2xl rounded-tr-none p-5 shadow-xl text-white border-r-4 border-white"
         >
           <p class="font-bold text-lg mb-2">Can I do this from home?</p>
-          <p class="text-blue-50 leading-relaxed">
+          <p class="text-teal-50 leading-relaxed">
             Absolutely, our pharmacist reviews can be handled entirely via
             secure video or phone call.
           </p>
@@ -121,7 +121,7 @@ onUnmounted(() => {
       <div class="flex justify-center mt-4">
         <button
           @click="isExpanded = !isExpanded"
-          class="group flex items-center gap-2 px-6 py-2 bg-slate-800 hover:bg-slate-700 text-blue-400 font-bold rounded-full border border-slate-700 transition-all shadow-md"
+          class="group flex items-center gap-2 px-6 py-2 bg-slate-800 hover:bg-slate-700 text-teal-400 font-bold rounded-full border border-slate-700 transition-all shadow-md"
         >
           <span>{{ isExpanded ? "Show less" : "View more questions" }}</span>
           <svg

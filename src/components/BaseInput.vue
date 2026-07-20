@@ -6,7 +6,7 @@
     </label>
 
     <!-- RADIO LAYOUT -->
-    <div v-if="type === 'radio'" class="flex gap-6 mt-1">
+    <div v-if="type === 'radio'" class="flex flex-wrap gap-x-6 gap-y-3 mt-1">
       <label
         v-for="option in options"
         :key="option.value"
@@ -20,15 +20,15 @@
             :checked="modelValue === option.value"
             @change="$emit('update:modelValue', option.value)"
             v-bind="$attrs"
-            class="peer appearance-none w-5 h-5 border-2 border-black rounded-full checked:border-blue-600 transition-all cursor-pointer"
+            class="peer appearance-none w-5 h-5 border-2 border-slate-300 rounded-full checked:border-teal-600 transition-all cursor-pointer"
           />
           <!-- Custom Inner Circle -->
           <div
-            class="absolute w-2.5 h-2.5 rounded-full bg-blue-600 scale-0 peer-checked:scale-100 transition-transform"
+            class="absolute w-2.5 h-2.5 rounded-full bg-teal-600 scale-0 peer-checked:scale-100 transition-transform"
           ></div>
         </div>
         <span
-          class="text-slate-800 font-medium group-hover:text-blue-600 transition-colors"
+          class="text-slate-800 font-medium group-hover:text-teal-600 transition-colors"
         >
           {{ option.label }}
         </span>
@@ -41,7 +41,7 @@
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
-      class="px-4 py-3 rounded-xl border-2 border-black focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-900"
+      class="px-4 py-3 rounded-xl border-2 border-slate-300 focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none transition-all text-slate-900"
     ></textarea>
 
     <!-- STANDARD INPUT (Existing) -->
@@ -51,7 +51,7 @@
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
-      class="px-4 py-3 rounded-xl border-2 border-black focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-900"
+      class="px-4 py-3 rounded-xl border-2 border-slate-300 focus:ring-2 focus:ring-teal-600 focus:border-transparent outline-none transition-all text-slate-900"
     />
   </div>
 </template>

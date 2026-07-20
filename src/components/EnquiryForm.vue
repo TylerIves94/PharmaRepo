@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 import BaseInput from "./BaseInput.vue";
 
 defineProps({
@@ -14,9 +14,13 @@ const form = reactive({
   phone: "",
   message: "",
   toggle: "self",
-  reachOutSubject: "", // For the first question
-  historyKnowledge: "", // For the second question
+  reachOutSubject: "self",
+  historyKnowledge: "",
 });
+
+const subjectPronoun = computed(() =>
+  form.reachOutSubject === "someone_else" ? "their" : "your",
+);
 
 const handleFormSubmit = () => {
   console.log("Form Submitted:", form);
@@ -38,7 +42,7 @@ const handleFormSubmit = () => {
     @click.self="emit('close')"
   >
     <div
-      class="relative max-w-3xl w-full bg-slate-50 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 animate-in fade-in zoom-in duration-300 max-h-[110vh] overflow-y-auto"
+      class="relative max-w-3xl w-full bg-slate-50 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 animate-in fade-in zoom-in duration-300 max-h-[90vh] flex flex-col"
     >
       <button
         @click="emit('close')"
@@ -60,19 +64,20 @@ const handleFormSubmit = () => {
         </svg>
       </button>
 
-      <div
-        class="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-center text-white"
-      >
-        <h2 class="text-3xl font-extrabold">Start Your Review</h2>
-        <p class="text-blue-100 mt-2 font-medium">
-          We need just a few details to get started
-        </p>
-      </div>
+      <div class="overflow-y-auto flex-1 min-h-0">
+        <div
+          class="bg-gradient-to-r from-teal-600 to-teal-800 p-8 text-center text-white"
+        >
+          <h2 class="text-3xl font-extrabold">Start Your Review</h2>
+          <p class="text-teal-100 mt-2 font-medium">
+            We need just a few details to get started
+          </p>
+        </div>
 
-      <form
-        @submit.prevent="handleFormSubmit"
-        class="p-8 md:p-12 space-y-6 bg-slate-50"
-      >
+        <form
+          @submit.prevent="handleFormSubmit"
+          class="p-8 md:p-12 space-y-6 bg-slate-50"
+        >
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <BaseInput
             label="Full Name"
@@ -102,7 +107,7 @@ const handleFormSubmit = () => {
         />
 
         <BaseInput
-          label="Are you familiar with {USER} medical history?"
+          :label="`Are you familiar with ${subjectPronoun} medical history?`"
           v-model="form.historyKnowledge"
           name="historyKnowledge"
           type="radio"
@@ -114,14 +119,14 @@ const handleFormSubmit = () => {
         />
 
         <BaseInput
-          label="Other Notes?"
+          label="You will need to share honest medical details for our pharmacists to give accurate and useful advice. Is this a problem?"
           v-model="form.message"
           type="textarea"
           optional
         />
 
         <div
-          class="bg-slate-100 p-4 rounded-lg border-1 border-blue-400 text-slate-600"
+          class="bg-slate-100 p-4 rounded-lg border border-teal-300 text-slate-600"
         >
           <h4
             class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1"
@@ -140,13 +145,14 @@ const handleFormSubmit = () => {
           </p>
         </div>
 
-        <button
-          type="submit"
-          class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-200"
-        >
-          Submit Enquiry
-        </button>
-      </form>
+          <button
+            type="submit"
+            class="w-full py-4 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-teal-200"
+          >
+            Submit Enquiry
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </template>

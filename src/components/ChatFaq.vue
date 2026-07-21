@@ -30,12 +30,12 @@ onUnmounted(() => {
   <div
     ref="targetElement"
     :class="[
-      'w-full transition-all duration-700 ease-out transform flex flex-col items-center',
+      'w-full -mt-8 transition-all duration-700 ease-out transform flex flex-col items-center',
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
     ]"
   >
     <main
-      class="w-full p-4 md:p-8 lg:p-12 flex flex-col items-center bg-gradient-to-tr from-slate-900 via-teal-950 to-slate-900 rounded-b-3xl relative border-b border-white/10 overflow-hidden"
+      class="w-full p-4 md:p-8 lg:p-12 flex flex-col items-center bg-gradient-to-tr from-slate-900 via-teal-950 to-slate-900 rounded-t-3xl rounded-b-3xl shadow-2xl relative border-b border-white/10 overflow-hidden"
     >
       <div
         class="absolute -bottom-24 -right-24 w-80 h-80 bg-teal-500/20 rounded-full blur-3xl -z-0 pointer-events-none"

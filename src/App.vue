@@ -10,10 +10,10 @@
       class="w-full relative overflow-hidden bg-gradient-to-b from-slate-50 via-teal-50/40 to-slate-50 py-8 lg:py-16 px-4 lg:px-8 flex flex-col items-center"
     >
       <div
-        class="absolute -top-24 -left-24 w-72 h-72 bg-teal-200/50 rounded-full blur-3xl -z-0 pointer-events-none"
+        class="hidden md:block absolute -top-24 -left-24 w-72 h-72 bg-teal-200/50 rounded-full blur-3xl -z-0 pointer-events-none"
       ></div>
       <div
-        class="absolute top-1/3 -right-24 w-96 h-96 bg-amber-100/60 rounded-full blur-3xl -z-0 pointer-events-none"
+        class="hidden md:block absolute top-1/3 -right-24 w-96 h-96 bg-amber-100/60 rounded-full blur-3xl -z-0 pointer-events-none"
       ></div>
 
       <div class="max-w-2xl w-full mb-12 text-center relative z-10">
@@ -82,7 +82,9 @@
 
     <WhatToExpect />
 
-    <div class="w-full bg-white pb-8 lg:pb-16 px-4 flex flex-col items-center">
+    <div
+      class="w-full bg-gradient-to-b from-white to-teal-50 pb-12 lg:pb-20 px-4 flex flex-col items-center"
+    >
       <div class="max-w-xl w-full">
         <button
           @click="showEnquiryModal = true"

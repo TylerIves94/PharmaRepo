@@ -6,9 +6,18 @@
 
     <HeroSection />
 
-    <div class="w-full bg-slate-50 py-8 px-4 flex flex-col items-center">
-      <div class="max-w-2xl w-full mb-12 text-center">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900">
+    <div
+      class="w-full relative overflow-hidden bg-gradient-to-b from-slate-50 via-teal-50/40 to-slate-50 py-8 lg:py-16 px-4 lg:px-8 flex flex-col items-center"
+    >
+      <div
+        class="absolute -top-24 -left-24 w-72 h-72 bg-teal-200/50 rounded-full blur-3xl -z-0 pointer-events-none"
+      ></div>
+      <div
+        class="absolute top-1/3 -right-24 w-96 h-96 bg-amber-100/60 rounded-full blur-3xl -z-0 pointer-events-none"
+      ></div>
+
+      <div class="max-w-2xl w-full mb-12 text-center relative z-10">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900">
           Getting the knowledge you want <br />
           <span class="text-teal-600">has never been easier</span>
         </h2>
@@ -16,12 +25,14 @@
         <div class="h-1 w-20 bg-teal-600 mx-auto mt-4 rounded-full"></div>
       </div>
 
-      <div class="max-w-2xl w-full space-y-6 md:space-y-12 relative">
+      <div
+        class="max-w-2xl lg:max-w-5xl w-full space-y-6 md:space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8 relative z-10"
+      >
         <div
-          class="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200 z-0"
+          class="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200 z-0 lg:hidden"
         ></div>
 
-        <div class="relative z-10 flex gap-6 group">
+        <div class="relative z-10 flex gap-6 lg:flex-col lg:items-center lg:text-center lg:gap-4 group">
           <div
             class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center font-bold text-teal-600 shadow-sm group-hover:bg-teal-600 group-hover:text-white transition-colors"
           >
@@ -31,8 +42,9 @@
             class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex-1"
           >
             <h3
-              class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
+              class="flex items-center lg:justify-center gap-2 text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
             >
+              <AlertCircle class="w-4 h-4 text-teal-600 flex-shrink-0" />
               The Problem
             </h3>
             <p class="text-slate-700 leading-relaxed">
@@ -47,7 +59,7 @@
           </div>
         </div>
 
-        <div class="relative z-10 flex gap-6 group">
+        <div class="relative z-10 flex gap-6 lg:flex-col lg:items-center lg:text-center lg:gap-4 group">
           <div
             class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center font-bold text-teal-600 shadow-sm group-hover:bg-teal-600 group-hover:text-white transition-colors"
           >
@@ -57,8 +69,9 @@
             class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex-1"
           >
             <h3
-              class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
+              class="flex items-center lg:justify-center gap-2 text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
             >
+              <Stethoscope class="w-4 h-4 text-teal-600 flex-shrink-0" />
               The Consultation
             </h3>
             <p class="text-slate-700 leading-relaxed">
@@ -72,7 +85,7 @@
             </p>
           </div>
         </div>
-        <div class="relative z-10 flex gap-6 group">
+        <div class="relative z-10 flex gap-6 lg:flex-col lg:items-center lg:text-center lg:gap-4 group">
           <div
             class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center font-bold text-teal-600 shadow-sm group-hover:bg-teal-600 group-hover:text-white transition-colors"
           >
@@ -82,8 +95,9 @@
             class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex-1"
           >
             <h3
-              class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
+              class="flex items-center lg:justify-center gap-2 text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
             >
+              <ClipboardCheck class="w-4 h-4 text-teal-600 flex-shrink-0" />
               The Action Plan
             </h3>
             <p class="text-slate-700 leading-relaxed">
@@ -93,10 +107,10 @@
             </p>
           </div>
         </div>
-        <div class="h-1 w-20 bg-teal-600 mx-auto mt-4 rounded-full"></div>
       </div>
+      <div class="h-1 w-20 bg-teal-600 mx-auto mt-8 rounded-full"></div>
 
-      <div class="mt-4 max-w-xl w-full">
+      <div class="mt-8 lg:mt-12 max-w-xl w-full relative z-10">
         <button
           @click="showEnquiryModal = true"
           class="w-full bg-gradient-to-r from-teal-600 to-teal-800 p-8 rounded-3xl shadow-xl text-center transform hover:scale-[1.02] transition-transform"
@@ -168,7 +182,15 @@
 
 <script setup>
 import { ref } from "vue";
-import { Phone, Mail, MapPin, Clock } from "lucide-vue-next";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  AlertCircle,
+  Stethoscope,
+  ClipboardCheck,
+} from "lucide-vue-next";
 import Header from "./components/Header.vue";
 import HeroSection from "./components/HeroSection.vue";
 import ChatFaq from "./components/ChatFaq.vue";

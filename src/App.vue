@@ -25,92 +25,65 @@
         <div class="h-1 w-20 bg-teal-600 mx-auto mt-4 rounded-full"></div>
       </div>
 
-      <div
-        class="max-w-2xl lg:max-w-5xl w-full space-y-6 md:space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8 relative z-10"
-      >
+      <div class="max-w-3xl w-full relative z-10 mb-10">
         <div
-          class="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200 z-0 lg:hidden"
-        ></div>
-
-        <div class="relative z-10 flex gap-6 lg:flex-col lg:items-center lg:text-center lg:gap-4 group">
-          <div
-            class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center font-bold text-teal-600 shadow-sm group-hover:bg-teal-600 group-hover:text-white transition-colors"
-          >
-            1
-          </div>
-          <div
-            class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex-1"
-          >
-            <h3
-              class="flex items-center lg:justify-center gap-2 text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
-            >
-              <AlertCircle class="w-4 h-4 text-teal-600 flex-shrink-0" />
-              The Problem
-            </h3>
-            <p class="text-slate-700 leading-relaxed">
-              Regular doctors and pharmacists do all they can to help, but they
-              are often limited by corporate targets, putting efficiency above
-              all else.
-              <span class="block mt-2 font-semibold text-teal-700 italic">
-                "This often leads to people being treated like numbers on a
-                conveyor belt."
-              </span>
-            </p>
-          </div>
-        </div>
-
-        <div class="relative z-10 flex gap-6 lg:flex-col lg:items-center lg:text-center lg:gap-4 group">
-          <div
-            class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center font-bold text-teal-600 shadow-sm group-hover:bg-teal-600 group-hover:text-white transition-colors"
-          >
-            2
-          </div>
-          <div
-            class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex-1"
-          >
-            <h3
-              class="flex items-center lg:justify-center gap-2 text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
-            >
-              <Stethoscope class="w-4 h-4 text-teal-600 flex-shrink-0" />
-              The Consultation
-            </h3>
-            <p class="text-slate-700 leading-relaxed">
-              We offer extensive
-              <span class="font-bold text-slate-900"
-                >one-on-one consultations</span
-              >
-              to analyze all your medications—including prescriptions, vitamins,
-              and supplements. We check for interactions and ensure your dosages
-              line up perfectly.
-            </p>
-          </div>
-        </div>
-        <div class="relative z-10 flex gap-6 lg:flex-col lg:items-center lg:text-center lg:gap-4 group">
-          <div
-            class="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center font-bold text-teal-600 shadow-sm group-hover:bg-teal-600 group-hover:text-white transition-colors"
-          >
-            3
-          </div>
-          <div
-            class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex-1"
-          >
-            <h3
-              class="flex items-center lg:justify-center gap-2 text-sm font-bold uppercase tracking-widest text-slate-400 mb-2"
-            >
-              <ClipboardCheck class="w-4 h-4 text-teal-600 flex-shrink-0" />
-              The Action Plan
-            </h3>
-            <p class="text-slate-700 leading-relaxed">
-              We focus on reducing waste, managing side effects, and creating a
-              clear, actionable plan tailored to your unique health needs and
-              goals.
-            </p>
-          </div>
+          class="bg-white rounded-3xl shadow-sm border border-slate-100 p-8 md:p-10 text-center"
+        >
+          <Quote class="w-8 h-8 text-teal-100 mx-auto mb-3" />
+          <p class="text-lg md:text-xl text-slate-700 leading-relaxed max-w-xl mx-auto">
+            Regular doctors and pharmacists do all they can to help, but
+            they're often limited by corporate targets that put efficiency
+            above all else.
+          </p>
+          <p class="mt-4 text-xl md:text-2xl font-bold text-teal-700 italic">
+            "Treated like numbers on a conveyor belt."
+          </p>
         </div>
       </div>
-      <div class="h-1 w-20 bg-teal-600 mx-auto mt-8 rounded-full"></div>
 
-      <div class="mt-8 lg:mt-12 max-w-xl w-full relative z-10">
+      <div
+        class="max-w-2xl lg:max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10"
+      >
+        <div
+          class="flex flex-col items-center text-center md:items-start md:text-left gap-3"
+        >
+          <div
+            class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center text-white flex-shrink-0"
+          >
+            <Stethoscope class="w-5 h-5" />
+          </div>
+          <h3 class="font-bold text-slate-900 text-lg">The Consultation</h3>
+          <p class="text-slate-600 leading-relaxed">
+            We offer extensive
+            <strong class="text-slate-900">one-on-one consultations</strong>
+            to analyze all your medications—including prescriptions, vitamins,
+            and supplements. We check for interactions and ensure your dosages
+            line up perfectly.
+          </p>
+        </div>
+
+        <div
+          class="flex flex-col items-center text-center md:items-start md:text-left gap-3 md:border-l md:border-slate-200 md:pl-8"
+        >
+          <div
+            class="w-10 h-10 rounded-lg bg-teal-600 flex items-center justify-center text-white flex-shrink-0"
+          >
+            <ClipboardCheck class="w-5 h-5" />
+          </div>
+          <h3 class="font-bold text-slate-900 text-lg">The Action Plan</h3>
+          <p class="text-slate-600 leading-relaxed">
+            We focus on reducing waste, managing side effects, and creating a
+            clear, actionable plan tailored to your unique health needs and
+            goals.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <WhatToExpect />
+
+    <div class="w-full bg-white pb-8 lg:pb-16 px-4 flex flex-col items-center">
+      <div class="max-w-xl w-full">
         <button
           @click="showEnquiryModal = true"
           class="w-full bg-gradient-to-r from-teal-600 to-teal-800 p-8 rounded-3xl shadow-xl text-center transform hover:scale-[1.02] transition-transform"
@@ -187,7 +160,7 @@ import {
   Mail,
   MapPin,
   Clock,
-  AlertCircle,
+  Quote,
   Stethoscope,
   ClipboardCheck,
 } from "lucide-vue-next";
@@ -196,6 +169,7 @@ import HeroSection from "./components/HeroSection.vue";
 import ChatFaq from "./components/ChatFaq.vue";
 import EnquiryForm from "./components/EnquiryForm.vue";
 import LicenseModal from "./components/LicenseModal.vue";
+import WhatToExpect from "./components/WhatToExpect.vue";
 
 // Control Viability of Form
 const showEnquiryModal = ref(false);

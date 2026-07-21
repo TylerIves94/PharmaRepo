@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, ref, computed } from "vue";
+import { ShieldCheck } from "lucide-vue-next";
 import BaseInput from "./BaseInput.vue";
 
 defineProps({
@@ -100,6 +101,12 @@ const handleClose = () => {
           <h2 class="text-3xl font-extrabold">Start Your Review</h2>
           <p class="text-teal-100 mt-2 font-medium">
             We need just a few details to get started
+          </p>
+          <p
+            class="flex items-center justify-center gap-1.5 mt-3 text-xs text-teal-100"
+          >
+            <ShieldCheck class="w-3.5 h-3.5 flex-shrink-0" />
+            Kept private and confidential, in line with HIPAA guidelines
           </p>
         </div>
 
